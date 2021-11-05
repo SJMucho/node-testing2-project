@@ -1,8 +1,8 @@
-const Cats = require("./cats-model");
+const Cats = require("./cats-model.js");
 const db = require("../../data/dbConfig");
 
-// const gizmo = {name:"Gizmo"}
-// const lucy = {name:"Lucy"}
+const gizmo = {name:"Gizmo"}
+const lucy = {name:"Lucy"}
 
 beforeAll(async ()=>{
   await db.migrate.rollback()
@@ -19,4 +19,15 @@ afterAll(async ()=>{
 
 it("correct env", ()=>{
   expect(process.env.DB_ENV).toBe("testing")
+})
+
+describe("Cats model", ()=>{
+  describe("insert function",()=>{
+    it("adds new cat to db", async ()=>{
+      let all 
+      await Cats.insert(gizmo)
+      all = await db("cats")
+      expect(all).toHaveLength(1)
+    })
+  })
 })
