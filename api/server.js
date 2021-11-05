@@ -3,9 +3,9 @@ const Cats = require("./cats/cats-model");
 const server = express();
 server.use(express.json());
 
-server.get("/", (req, res) => {
-  res.status(200).json({ api: "up" });
-});
+// server.get("/", (req, res) => {
+//   res.status(200).json({ api: "up" });
+// });
 
 server.get("/cats", (req, res) => {
   Cats.getAll
